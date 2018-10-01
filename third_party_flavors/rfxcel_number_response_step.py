@@ -15,7 +15,7 @@
 from lxml import etree
 from quartet_capture import models, errors as capture_errors
 from quartet_capture.rules import RuleContext, Step
-from list_based_flavorpack.models import ListBasedRegions
+from list_based_flavorpack.models import ListBasedRegion
 
 
 class RFXCELNumberResponseParserStep(Step):
