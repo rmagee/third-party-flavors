@@ -13,13 +13,12 @@
 #
 # Copyright 2018 SerialLab Corp.  All rights reserved.
 from lxml import etree
-from quartet_capture import models, rules, errors as capture_errors
-from list_based_flavorpack.models import ListBasedRegion
-from quartet_capture.rules import RuleContext
+from quartet_capture import models, errors as capture_errors
+from quartet_capture.rules import RuleContext, Step
 from list_based_flavorpack.models import ListBasedRegion
 
 
-class TracelinkNumberResponseParserStep(rules.Step):
+class TracelinkNumberResponseParserStep(Step):
     '''
     Parses the Number Response and writes them to a file in list-based format.
     '''
@@ -39,9 +38,8 @@ class TracelinkNumberResponseParserStep(rules.Step):
             with open(region.file_path, "a") as f:
                 for id in number_elements:
                     f.write("%s\n" % id.text)
-        except Exception as e:
+        except:
             self.info("Error while processing response: %s", rule_context.context["NUMBER_RESPONSE"])
-            self.info("Error detail: %s", str(e))
             raise
 
     def on_failure(self):
